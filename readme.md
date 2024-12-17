@@ -11,6 +11,6 @@ This project replicates the dynamic animations and interactive design of the ori
 - HTML
 - CSS
 - JavaScript
+- HTML5 Canvas
 - GSAP (GreenSock Animation Platform) with ScrollTrigger
 - Locomotive Scroll
-- HTML5 Canvas
