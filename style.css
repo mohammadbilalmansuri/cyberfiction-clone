@@ -1,32 +1,38 @@
 @font-face {
   font-family: "Ease Standard Trial";
-  src: url("https://res.cloudinary.com/mohammadbilalmansuri/raw/upload/v1734923468/cyberfiction/fonts/EaseStandardTRIAL-Regular.woff2");
+  src: url("https://res.cloudinary.com/mohammadbilalmansuri/image/upload/v1734923508/cyberfiction/fonts/EaseStandardTRIAL-Regular.woff2");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Ease Standard Trial";
-  src: url("https://res.cloudinary.com/mohammadbilalmansuri/raw/upload/v1734923468/cyberfiction/fonts/EaseStandardTRIAL-Medium.woff2");
+  src: url("https://res.cloudinary.com/mohammadbilalmansuri/image/upload/v1734923508/cyberfiction/fonts/EaseStandardTRIAL-Medium.woff2");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: "Ease Standard Trial";
-  src: url("https://res.cloudinary.com/mohammadbilalmansuri/raw/upload/v1734923468/cyberfiction/fonts/EaseStandardTRIAL-Semibold.woff2");
+  src: url("https://res.cloudinary.com/mohammadbilalmansuri/image/upload/v1734923508/cyberfiction/fonts/EaseStandardTRIAL-Semibold.woff2");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Ease Standard Trial";
-  src: url("https://res.cloudinary.com/mohammadbilalmansuri/raw/upload/v1734923468/cyberfiction/fonts/EaseStandardTRIAL-Bold.woff2");
+  src: url("https://res.cloudinary.com/mohammadbilalmansuri/image/upload/v1734923508/cyberfiction/fonts/EaseStandardTRIAL-Bold.woff2");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "Ease Standard Trial";
-  src: url("https://res.cloudinary.com/mohammadbilalmansuri/raw/upload/v1734923468/cyberfiction/fonts/EaseStandardTRIAL-Semibold.woff2");
+  src: url("https://res.cloudinary.com/mohammadbilalmansuri/image/upload/v1734923508/cyberfiction/fonts/EaseStandardTRIAL-Semibold.woff2");
   font-weight: 800;
   font-style: normal;
+}
+
+:root {
+  --white: #f1f1f1;
+  --black: #000000;
+  --gray: #555555;
 }
 
 * {
@@ -36,15 +42,12 @@
   font-family: "Ease Standard Trial", sans-serif;
 }
 
-html,
 body {
-  height: 100%;
   width: 100%;
-}
-
-main {
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
-  overflow: hidden;
+  background-color: var(--white);
 }
 
 header {
@@ -55,6 +58,7 @@ header {
   position: fixed;
   z-index: 100;
   padding: 1% 3%;
+  background-color: var(--white);
 }
 
 header > h3 {
@@ -74,29 +78,34 @@ header > div > button {
   font-size: 1vw;
   padding: 0.5vw 1vw;
   border-radius: 5vw;
-  background-color: #000000;
-  color: #f1f1f1;
+  background-color: var(--black);
+  color: var(--white);
   border: none;
+}
+
+canvas {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  width: 100%;
+  height: 97dvh;
 }
 
 #banner,
 #section1,
 #section2,
 #section3 {
+  width: 100%;
+  height: 100dvh;
   position: relative;
-  height: 100vh;
-  width: 100vw;
-  background-color: #f1f1f1;
-}
-
-canvas {
-  position: relative;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99;
-  width: 100vw;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--white);
 }
 
 .banner-div {
@@ -105,8 +114,6 @@ canvas {
   flex-direction: column;
   gap: 1vw;
   padding: 0 3%;
-  position: absolute;
-  top: 30%;
 }
 
 .main-heading {
@@ -125,7 +132,7 @@ canvas {
 }
 
 .main-heading > span > span {
-  -webkit-text-stroke: 0.15vw #000;
+  -webkit-text-stroke: 0.15vw var(--black);
   color: transparent;
 }
 
@@ -140,12 +147,13 @@ canvas {
 
 .banner-text-div {
   display: flex;
+  align-items: start;
   justify-content: space-between;
 }
 
 .text-left,
 .text-right {
-  width: 35%;
+  width: 33.33%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -159,7 +167,7 @@ canvas {
   font-size: 1.1vw;
   line-height: 1.5vw;
   font-weight: 400;
-  color: #555555;
+  color: var(--gray);
   text-transform: uppercase;
 }
 
@@ -168,201 +176,213 @@ canvas {
   text-transform: uppercase;
 }
 
+.mobile-text {
+  display: none;
+}
+
 .secondary-heading {
-  font-size: 3.5vw;
-  line-height: 4vw;
+  font-size: 3.25vw;
+  line-height: 3.75vw;
   font-weight: 500;
   text-transform: uppercase;
 }
 
 .section-div {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  top: 23%;
   padding: 0 3%;
 }
 
-.section-div div:nth-child(1) {
-  width: 35%;
+.section-div div:first-child,
+.section-div div:last-child {
+  width: 33.33%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.section-div div:nth-child(2) {
-  width: 35%;
+.section-div div:last-child {
   text-align: right;
-  padding-top: 11%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
-#section2 .section-div {
-  top: 35%;
+#section2 .section-div div:last-child {
+  padding-top: 15%;
 }
 
-#section3 .section-div {
-  top: 27%;
+#section3 .section-div div:last-child {
+  padding-top: 10%;
 }
 
-#section3 .section-div div:nth-child(2) {
-  padding-top: 13%;
-}
+@media screen and (max-width: 1280px) {
+  .section-div div:first-child,
+  .section-div div:last-child,
+  .text-left,
+  .text-right {
+    width: 30%;
+  }
 
-@media screen and (max-width: 1367px) {
+  #section3 .section-div div:last-child {
+    padding-top: 15%;
+    width: 33%;
+  }
+
   header > h3 {
-    font-size: 2vw;
+    font-size: 3vw;
   }
 
-  header > div {
-    font-size: 1.2vw;
-  }
-
+  header > div,
   header > div > button {
-    font-size: 1.2vw;
-  }
-
-  .main-heading > span {
-    font-size: 10vw;
+    font-size: 1.5vw;
   }
 
   .subtext {
-    font-size: 1.3vw;
-    line-height: 1.7vw;
+    font-size: 1.25vw;
+    line-height: 1.75vw;
   }
 }
 
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 1023px) {
+  canvas {
+    height: 75%;
+  }
+
+  header {
+    padding: 2% 3%;
+  }
+
   header > h3 {
     font-size: 3.5vw;
   }
 
-  header > div {
-    font-size: 1.8vw;
-  }
-
+  header > div,
   header > div > button {
-    font-size: 1.8vw;
+    font-size: 1.75vw;
   }
 
-  .main-heading > span {
-    font-size: 15vw;
+  #banner,
+  #section1,
+  #section2,
+  #section3 {
+    justify-content: start;
   }
 
-  .subtext {
-    font-size: 1.7vw;
-    line-height: 2.7vw;
+  #banner {
+    padding: 11% 0;
   }
 
-  .banner-div {
-    top: 36%;
+  #section1,
+  #section2 {
+    padding: 14% 0;
   }
 
-  .text-left,
-  .text-right {
-    width: 25%;
+  #section3 {
+    padding: 12% 0;
   }
 
-  .section-div {
-    top: 50%;
-  }
-
-  .section-div div:nth-child(1) {
-    width: 25%;
-  }
-
-  .section-div div:nth-child(2) {
-    width: 25%;
+  #section2 .section-div div:last-child,
+  #section3 .section-div div:last-child {
     padding-top: 0;
   }
 
-  #section2 .section-div {
-    top: 50%;
+  .section-div,
+  .banner-text-div {
+    gap: 20px;
   }
 
-  #section3 .section-div {
-    top: 33%;
+  .section-div div:first-child,
+  .section-div div:last-child,
+  .text-left,
+  .text-right {
+    width: 50%;
   }
 
-  #section3 .section-div div:nth-child(2) {
-    padding-top: 25%;
-  }
-}
-
-@media screen and (max-width: 769px) {
-  canvas {
-    width: 100vw;
-    height: 65vh;
+  #section3 .section-div div:first-child {
+    width: 60%;
   }
 
-  header > h3 {
-    font-size: 4vw;
-  }
-
-  header > div {
-    font-size: 2vw;
-  }
-
-  header > div > button {
-    font-size: 2vw;
+  #section3 .section-div div:last-child {
+    width: 40%;
   }
 
   .main-heading > span {
-    font-size: 10vw;
-  }
-
-  .main-heading > span > span {
-    -webkit-text-stroke: 0.2vw #000;
-  }
-
-  .subtext {
-    font-size: 3.5vw;
-    line-height: 4.5vw;
+    font-size: 8vw;
+    font-weight: 500;
   }
 
   .secondary-heading {
-    font-size: 5vw;
-    line-height: 6vw;
+    font-size: 3vw;
+    line-height: 3.5vw;
   }
 
-  .banner-div {
-    top: 67%;
+  .subtext {
+    font-size: 1.75vw;
+    line-height: 2.25vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  header > h3 {
+    font-size: 4.5vw;
   }
 
-  .banner-text-div {
-    flex-direction: column;
-    gap: 10px;
+  header > div,
+  header > div > button {
+    font-size: 2.25vw;
   }
 
-  .text-left,
-  .text-right {
-    width: 100%;
-    text-align: left;
+  .secondary-heading {
+    font-size: 4vw;
+    line-height: 4.5vw;
   }
 
+  .subtext {
+    font-size: 2.25vw;
+    line-height: 3vw;
+  }
+
+  .banner-text-div,
   .section-div {
-    top: 67%;
     flex-direction: column;
+    align-items: start;
     gap: 10px;
-    padding-top: 0;
-  }
-
-  .section-div div:nth-child(1),
-  .section-div div:nth-child(2) {
-    width: 100%;
-    text-align: left;
-    padding-top: 0;
-  }
-
-  #section2 .section-div {
-    top: 67%;
-    padding-top: 0;
   }
 
   #section3 .section-div {
     flex-direction: column-reverse;
-    top: 52%;
+  }
+
+  .text-left,
+  .text-right,
+  .section-div div:first-child,
+  .section-div div:last-child {
+    width: 100% !important;
+    text-align: left;
+  }
+
+  .mobile-text {
+    display: block;
+    font-size: 2.5vw;
+  }
+
+  .bold-text {
+    font-size: 2.5vw;
+  }
+
+  .desktop-text {
+    display: none;
+  }
+
+  #banner,
+  #section3 {
+    padding: 16% 0;
+  }
+
+  #section1 {
+    padding: 18% 0;
+  }
+
+  #section2 {
+    padding: 20% 0;
   }
 }
