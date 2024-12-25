@@ -32,10 +32,9 @@ const imagesUrls = Array.from(
     ).padStart(4, "0")}.webp`
 );
 
-// holds Image objects for each frame
+// Holds Image objects for each frame
 const images = new Map();
 
-// Preload the first image separately
 const firstImage = new Image();
 firstImage.src = imagesUrls[0];
 firstImage.onload = function () {
@@ -43,7 +42,6 @@ firstImage.onload = function () {
   requestAnimationFrame(render); // Start rendering after the first image is loaded
 };
 
-// Preload the rest of the images
 imagesUrls.slice(1).forEach((imageUrl, index) => {
   const img = new Image();
   img.src = imageUrl;
@@ -56,13 +54,10 @@ const imageSeq = { frame: 0 };
 // Function to render the current frame on the canvas
 function render() {
   const img = images.get(imageSeq.frame) || firstImage;
-  if (img) {
-    scaleImage(img, context);
-  }
+  img && drawImageOnCanvas(img, context);
 }
 
-// Function to scale and draw an image on the canvas
-function scaleImage(img, ctx) {
+function drawImageOnCanvas(img, ctx) {
   const canvas = ctx.canvas;
   const hRatio = canvas.width / img.width;
   const vRatio = canvas.height / img.height;
@@ -109,7 +104,6 @@ gsap.to(imageSeq, {
   onUpdate: render,
 });
 
-// To pin the sections on scroll
 ["#section1", "#section2", "#section3"].forEach((section) => {
   gsap.to(section, {
     scrollTrigger: {
