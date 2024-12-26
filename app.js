@@ -1,3 +1,4 @@
+// ------------ Canvas Setup ------------
 const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
 
@@ -78,7 +79,8 @@ function drawImageOnCanvas(img, ctx) {
   );
 }
 
-// Lenis with GSAP
+// ------------ Lenis with GSAP ------------
+
 const lenis = new Lenis();
 gsap.registerPlugin(ScrollTrigger);
 lenis.on("scroll", ScrollTrigger.update);
@@ -89,7 +91,8 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Animation for the image sequence on scroll
+// ------------ Animations on scroll ------------
+
 gsap.to(imageSeq, {
   frame: images.size - 1,
   snap: "frame",
