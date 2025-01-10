@@ -7,6 +7,6 @@ A replica of the award-winning Cyber Fiction website home page, developed to pra
 - HTML
 - CSS
 - JavaScript
-- HTML5 Canvas
+- Canvas API
 - GSAP with ScrollTrigger
 - Lenis
