@@ -29,7 +29,7 @@
   const imagesUrls = Array.from(
     { length: 300 },
     (_, i) =>
-      `https://res.cloudinary.com/mohammadbilalmansuri/image/upload/v1734923508/cyberfiction/male${String(
+      `https://res.cloudinary.com/mohammadbilalmansuri/image/upload/cyberfiction/male${String(
         i + 1
       ).padStart(4, "0")}.webp`
   );
