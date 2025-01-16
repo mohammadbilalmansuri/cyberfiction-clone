@@ -3,24 +3,23 @@
   const canvas = document.querySelector("canvas");
   const context = canvas.getContext("2d");
 
-  function setCanvasDimensions() {
+  function setCanvasSize() {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth < 1024 ? canvas.height : window.innerWidth;
   }
 
-  setCanvasDimensions();
+  setCanvasSize();
 
   function resizeCanvas() {
-    setCanvasDimensions();
+    setCanvasSize();
     render();
   }
 
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
-      const context = this;
       clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(context, args), wait);
+      timeout = setTimeout(() => func(...args), wait);
     };
   }
 
@@ -99,7 +98,7 @@
     snap: "frame",
     ease: "none",
     scrollTrigger: {
-      scrub: 0.15,
+      scrub: 0.05,
       trigger: "#banner",
       start: "top top",
       end: "600% top",
