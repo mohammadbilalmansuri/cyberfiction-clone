@@ -3,42 +3,26 @@
   const canvas = document.querySelector("canvas");
   const context = canvas.getContext("2d");
 
-  function setCanvasSize() {
+  const setCanvasSize = () => {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth < 1024 ? canvas.height : window.innerWidth;
-  }
+  };
 
   setCanvasSize();
-
-  function resizeCanvas() {
-    setCanvasSize();
-    render();
-  }
-
-  function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func(...args), wait);
-    };
-  }
-
-  window.addEventListener("resize", debounce(resizeCanvas, 100));
 
   const imagesUrls = Array.from(
     { length: 300 },
     (_, i) =>
-      `https://res.cloudinary.com/mohammadbilalmansuri/image/upload/cyberfiction/male${String(
+      `https://res.cloudinary.com/mohammadbilalmansuri/image/upload/v1737212070/cyberfiction/images/male${
         i + 1
-      ).padStart(4, "0")}.webp`
+      }.webp`
   );
 
   // Holds Image objects for each frame
   const images = new Map();
-
   const firstImage = new Image();
   firstImage.src = imagesUrls[0];
-  firstImage.onload = function () {
+  firstImage.onload = () => {
     images.set(0, firstImage);
     requestAnimationFrame(render); // Start rendering after the first image is loaded
   };
@@ -79,6 +63,21 @@
     );
   }
 
+  function debounce(func, wait) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), wait);
+    };
+  }
+
+  new ResizeObserver(
+    debounce(() => {
+      setCanvasSize();
+      render();
+    }, 100)
+  ).observe(document.body);
+
   // ------------ Lenis with GSAP ------------
 
   const lenis = new Lenis();
@@ -98,24 +97,22 @@
     snap: "frame",
     ease: "none",
     scrollTrigger: {
-      scrub: 0.05,
       trigger: "#banner",
-      start: "top top",
-      end: "600% top",
       scroller: "body",
+      scrub: 0.1,
+      start: "top top",
+      end: "top -600%",
     },
     onUpdate: render,
   });
 
   ["#section1", "#section2", "#section3"].forEach((section) => {
-    gsap.to(section, {
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        pin: true,
-        scroller: "body",
-      },
+    ScrollTrigger.create({
+      trigger: section,
+      scroller: "body",
+      start: "top top",
+      end: "bottom top",
+      pin: true,
     });
   });
 
